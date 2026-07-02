@@ -1,0 +1,88 @@
+<!-- ═══════════════════════════════════════════════════════════
+     BANSI HERBAL — FOOTER PARTIAL
+     footer.html — Paste this markup right before </body> on every
+     page (index.html, category.html, product-detail.html),
+     AFTER your main page content but BEFORE your <script> tags
+     that need supabaseClient (footer.js loads settings dynamically).
+     ═══════════════════════════════════════════════════════════ -->
+
+<footer class="site-footer">
+  <div class="site-footer__top">
+
+    <!-- Brand + social + tagline -->
+    <div class="site-footer__brand">
+      <a href="index.html" class="brand">
+        <div class="brand__mark">B</div>
+        <div class="brand__text">
+          <div class="brand__name">Bansi Herbal</div>
+          <div class="brand__sub">Ayurvedic Wellness</div>
+        </div>
+      </a>
+      <p class="site-footer__tagline" id="footerTagline">
+        Authentic Ayurvedic products made with traditional knowledge and pure, natural ingredients — delivered to your door.
+      </p>
+      <div class="site-footer__social">
+        <a href="#" id="footerWhatsapp" target="_blank" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.2-3.8-.8-3.2-1.3-5.2-4.5-5.4-4.7-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.6l1 2.4c.1.2.1.4 0 .6l-.5.7c-.1.2-.3.4-.1.7.2.3 .9 1.5 1.9 2.4 1.3 1.2 2.4 1.6 2.7 1.7.3.1.5.1.7-.1l.8-1c.2-.3.5-.2.7-.1l2.1 1c.2.1.4.2.5.3.1.2.1 1-.1 1.7z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v6h3v-6h3l1-3h-4V9c0-.5.5-1 1-1z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick links -->
+    <div class="footer-col">
+      <div class="footer-col__title">Quick Links</div>
+      <a href="index.html">Home</a>
+      <a href="category.html">Shop All Products</a>
+      <a href="category.html?filter=bestsellers">Best Sellers</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <!-- Store policies -->
+    <div class="footer-col">
+      <div class="footer-col__title">Store Policies</div>
+      <a href="policies.html#shipping">Shipping & Delivery</a>
+      <a href="policies.html#returns">Returns & Refunds</a>
+      <a href="policies.html#privacy">Privacy Policy</a>
+      <a href="policies.html#terms">Terms of Service</a>
+    </div>
+
+    <!-- Contact + Map -->
+    <div class="footer-col">
+      <div class="footer-col__title">Visit / Contact</div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1.3A4.7 4.7 0 003.3 6c0 3.4 4.7 8.7 4.7 8.7S12.7 9.4 12.7 6A4.7 4.7 0 008 1.3z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span id="footerAddress">Your shop address, City</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2 3.5C2 2.7 2.7 2 3.5 2H5l1.3 3.3-1.5 1.2a8 8 0 004.7 4.7l1.2-1.5L14 11v1.5c0 .8-.7 1.5-1.5 1.5C6.7 14 2 9.3 2 3.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <span id="footerPhone">+91 XXXXX XXXXX</span>
+      </div>
+      <div class="footer-map">
+        <iframe id="footerMapEmbed"
+          src="https://www.google.com/maps?q=India&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Store location"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="site-footer__bottom">
+    <div class="site-footer__bottom-inner">
+      <span>© <span id="footerYear"></span> Bansi Herbal. All rights reserved.</span>
+      <div class="site-footer__legal">
+        <a href="policies.html#privacy">Privacy</a>
+        <a href="policies.html#terms">Terms</a>
+        <a href="policies.html#shipping">Shipping</a>
+        <a href="policies.html#returns">Returns</a>
+      </div>
+    </div>
+  </div>
+</footer>

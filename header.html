@@ -1,0 +1,91 @@
+<!-- ═══════════════════════════════════════════════════════════
+     BANSI HERBAL — HEADER PARTIAL
+     header.html — Paste this markup right after <body> on every
+     page (index.html, category.html, product-detail.html).
+     Requires: global.css, components.css, and header.js loaded.
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="announce">🚚 Free Home Delivery on orders above ₹399 &nbsp;•&nbsp; 🌿 100% Natural &amp; Ayurvedic</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- Logo -->
+    <a href="index.html" class="brand">
+      <div class="brand__mark">B</div>
+      <div class="brand__text">
+        <div class="brand__name">Bansi Herbal</div>
+        <div class="brand__sub">Ayurvedic Wellness</div>
+      </div>
+    </a>
+
+    <!-- Primary nav -->
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="index.html" class="primary-nav__link">Home</a>
+
+      <div class="nav-dropdown" id="categoriesDropdown">
+        <button class="nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+          Categories
+          <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown__panel" id="categoriesPanel" role="menu">
+          <!-- Populated dynamically from Supabase by header.js -->
+          <div class="nav-dropdown__item">Loading categories…</div>
+        </div>
+      </div>
+
+      <a href="category.html?filter=bestsellers" class="primary-nav__link">Best Sellers</a>
+      <a href="index.html#about" class="primary-nav__link">About</a>
+      <a href="index.html#contact" class="primary-nav__link">Contact</a>
+      <a href="https://wa.me/919861920320?text=Hello%20Bansi%20Herbal%2C%20I%20am%20looking%20for%20a%20specific%20product%20not%20listed%20on%20the%20website..."
+         target="_blank" class="primary-nav__link primary-nav__link--request">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 00-6 10.6L1 15l3.5-1A7 7 0 108 1z" opacity=".15"/><path d="M8 1.3A6.7 6.7 0 001.5 8c0 1.2.3 2.3.9 3.3L1.3 14.7l3.5-1a6.7 6.7 0 1011.9-6.4A6.7 6.7 0 008 1.3z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+        Request Product
+      </a>
+    </nav>
+
+    <!-- Search -->
+    <div class="site-search" id="siteSearch">
+      <svg class="site-search__icon" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input type="text" class="site-search__input" id="siteSearchInput" placeholder="Search products…" autocomplete="off" />
+      <div class="site-search__panel" id="siteSearchPanel"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <a href="cart.html" class="icon-btn" aria-label="View cart">
+        <svg viewBox="0 0 22 22" fill="none"><path d="M2 2h2l1.6 10.6a2 2 0 002 1.7h8.6a2 2 0 002-1.7L19.5 6H5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="19" r="1.4" fill="currentColor"/><circle cx="16" cy="19" r="1.4" fill="currentColor"/></svg>
+        <span class="icon-btn__badge" id="cartBadge">0</span>
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav__panel">
+    <div class="mobile-nav__close">
+      <button class="icon-btn" id="mobileClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <a href="index.html" class="mobile-nav__link">Home</a>
+    <a href="category.html?filter=bestsellers" class="mobile-nav__link">Best Sellers</a>
+    <a href="index.html#about" class="mobile-nav__link">About</a>
+    <a href="index.html#contact" class="mobile-nav__link">Contact</a>
+
+    <div class="mobile-nav__group-label">Shop by Category</div>
+    <div id="mobileCategoriesList">
+      <!-- Populated dynamically by header.js -->
+    </div>
+
+    <a href="https://wa.me/919861920320?text=Hello%20Bansi%20Herbal%2C%20I%20am%20looking%20for%20a%20specific%20product%20not%20listed%20on%20the%20website..."
+       target="_blank" class="btn btn--accent btn--block" style="margin-top: 1.5rem;">
+      Request a Product on WhatsApp
+    </a>
+  </div>
+</div>

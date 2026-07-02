@@ -1,0 +1,51 @@
+<!-- ═══════════════════════════════════════════════════════════
+     BANSI HERBAL — SHOP BY CATEGORY + BEST SELLERS
+     category-bestsellers.html — Paste this right after the
+     closing </section> of trust-banner.html.
+     Requires: home.css loaded, and category-bestsellers.js
+     (must load after supabaseClient and after header.js,
+     since it reuses the cart logic pattern).
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- SHOP BY CATEGORY -->
+<section class="home-section" id="shop-by-category">
+  <div class="container">
+    <div class="home-section__head">
+      <div class="home-section__heading">
+        <span class="eyebrow">Browse by Wellness Need</span>
+        <h2>Shop by Category</h2>
+        <p>Find the right Ayurvedic formulation for your specific health concern.</p>
+      </div>
+      <a href="category.html" class="btn btn--outline btn--sm">View All →</a>
+    </div>
+  </div>
+
+  <div class="category-grid" id="categoryGrid">
+    <div class="category-grid__skeleton">
+      <div class="skeleton-box"></div><div class="skeleton-box"></div>
+      <div class="skeleton-box"></div><div class="skeleton-box"></div>
+      <div class="skeleton-box"></div><div class="skeleton-box"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="home-section home-section--alt" id="best-sellers">
+  <div class="container">
+    <div class="home-section__head">
+      <div class="home-section__heading">
+        <span class="eyebrow">Customer Favorites</span>
+        <h2>Best Sellers</h2>
+        <p>The products our customers reach for again and again.</p>
+      </div>
+      <a href="category.html?filter=bestsellers" class="btn btn--outline btn--sm">View All →</a>
+    </div>
+  </div>
+
+  <div class="bestseller-grid" id="bestsellerGrid">
+    <div class="bestseller-grid__skeleton">
+      <div class="skeleton-box"></div><div class="skeleton-box"></div>
+      <div class="skeleton-box"></div><div class="skeleton-box"></div>
+    </div>
+  </div>
+</section>

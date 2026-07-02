@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – Bansi Herbal</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a4a2e 0%, #2d7a4f 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .login-card {
+      background: white; border-radius: 16px; padding: 40px;
+      width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo .icon { font-size: 48px; margin-bottom: 8px; }
+    .login-logo h1 { font-size: 22px; font-weight: 800; color: #1a4a2e; }
+    .login-logo p { font-size: 13px; color: #777; margin-top: 4px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 6px; }
+    .form-group input {
+      width: 100%; border: 1px solid #ddd; border-radius: 8px;
+      padding: 12px 14px; font-size: 15px; outline: none; transition: border 0.2s;
+    }
+    .form-group input:focus { border-color: #2d7a4f; box-shadow: 0 0 0 3px rgba(45,122,79,0.1); }
+    .login-btn {
+      width: 100%; background: #1a4a2e; color: white; border: none;
+      border-radius: 8px; padding: 14px; font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s; margin-top: 4px;
+    }
+    .login-btn:hover { background: #2d7a4f; }
+    .login-btn:disabled { background: #aaa; cursor: not-allowed; }
+    .error-msg { background: #fee2e2; color: #dc2626; border-radius: 8px; padding: 12px; font-size: 14px; margin-top: 16px; display: none; }
+    .back-link { text-align: center; margin-top: 20px; }
+    .back-link a { color: #2d7a4f; text-decoration: none; font-size: 13px; }
+    .back-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">🌿</div>
+      <h1>Admin Portal</h1>
+      <p>Bansi Herbal & Ayurveda</p>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="admin@example.com" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter your password" onkeydown="if(event.key==='Enter') login()" />
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="login()">Login to Admin</button>
+    <div class="error-msg" id="errorMsg"></div>
+    <div class="back-link"><a href="index.html">← Back to Website</a></div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://npgkfazicsonnshqswqz.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wZ2tmYXppY3Nvbm5zaHFzd3F6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NDI3MzksImV4cCI6MjA5ODIxODczOX0.1nmrveiCz--nkXlcv-vaqjAAJVFBUImLk7MC2shC8XQ';
+    
+    // CHANGED: Renamed to supabaseClient to prevent crashing
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // If already logged in, redirect
+    supabaseClient.auth.getSession().then(({ data }) => {
+      if (data.session) window.location.href = 'admin.html';
+    });
+
+    async function login() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('loginBtn');
+      const err = document.getElementById('errorMsg');
+
+      if (!email || !password) { showError('Please enter email and password.'); return; }
+
+      btn.textContent = 'Logging in...';
+      btn.disabled = true;
+      err.style.display = 'none';
+
+      // CHANGED: Using supabaseClient here as well
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        showError('Invalid email or password. Please try again.');
+        btn.textContent = 'Login to Admin';
+        btn.disabled = false;
+      } else {
+        window.location.href = 'admin.html';
+      }
+    }
+
+    function showError(msg) {
+      const err = document.getElementById('errorMsg');
+      err.textContent = msg;
+      err.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
