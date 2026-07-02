@@ -1,0 +1,332 @@
+/* ═══════════════════════════════════════════════════════════
+   BANSI HERBAL — GLOBAL DESIGN SYSTEM
+   global.css — Foundation tokens, reset, and shared utilities.
+   Loaded on every page, before any page-specific stylesheet.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  /* Brand palette (as specified) */
+  --color-primary: #2C5F2D;        /* Deep Forest Green — headers, footer, primary text */
+  --color-primary-dark: #1f4520;   /* Darker shade for depth/hover on dark surfaces */
+  --color-secondary: #97BC62;      /* Sage Green — hover states, accents */
+  --color-secondary-light: #b7d68c;
+  --color-bg: #F9F8F4;             /* Cream/off-white — main body background */
+  --color-bg-alt: #f1efe6;         /* Slightly deeper cream for alternating sections */
+  --color-accent: #E88D39;         /* Warm Amber — Buy/Cart/WhatsApp CTAs ONLY */
+  --color-accent-dark: #cf7720;
+
+  /* Neutrals (derived to sit comfortably with the cream base, never pure white/black) */
+  --color-ink: #232017;            /* Near-black with a warm cast, for body text */
+  --color-ink-soft: #5b5847;       /* Muted text, captions, metadata */
+  --color-border: #e3dfd0;         /* Hairline borders on the cream background */
+  --color-white: #ffffff;
+  --color-surface: #ffffff;        /* Card surfaces sit on white, atop cream background */
+
+  /* Status (used sparingly — stock states, form validation) */
+  --color-success: #2C5F2D;
+  --color-danger: #b3432f;
+  --color-warning: var(--color-accent);
+
+  /* Typography */
+  --font-display: 'Fraunces', 'Georgia', serif;     /* Characterful serif — headlines, signature moments */
+  --font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;  /* Clean body face */
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;       /* Prices, SKUs, data */
+
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.875rem;    /* 14px */
+  --fs-base: 1rem;      /* 16px */
+  --fs-md: 1.125rem;    /* 18px */
+  --fs-lg: 1.375rem;    /* 22px */
+  --fs-xl: 1.75rem;     /* 28px */
+  --fs-2xl: 2.25rem;    /* 36px */
+  --fs-3xl: 3rem;       /* 48px */
+  --fs-4xl: 3.75rem;    /* 60px */
+
+  /* Spacing scale (8px base unit) */
+  --sp-1: 0.5rem;
+  --sp-2: 0.75rem;
+  --sp-3: 1rem;
+  --sp-4: 1.5rem;
+  --sp-5: 2rem;
+  --sp-6: 3rem;
+  --sp-7: 4rem;
+  --sp-8: 6rem;
+  --sp-9: 8rem;
+
+  /* Layout */
+  --container-max: 1240px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows — soft, warm-tinted (never cool grey) to sit naturally on cream */
+  --shadow-sm: 0 1px 3px rgba(44, 95, 45, 0.08);
+  --shadow-md: 0 6px 20px rgba(44, 95, 45, 0.10);
+  --shadow-lg: 0 16px 40px rgba(44, 95, 45, 0.14);
+  --shadow-accent: 0 8px 24px rgba(232, 141, 57, 0.30);
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+/* ── FONT IMPORT ───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; font-size: inherit; }
+ul, ol { list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Visible keyboard focus — accessibility floor, never remove */
+:focus-visible {
+  outline: 2.5px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── LAYOUT UTILITIES ──────────────────────────────────────── */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-4);
+}
+
+.section {
+  padding-block: var(--sp-8);
+}
+
+.section--tight { padding-block: var(--sp-6); }
+.section--alt { background: var(--color-bg-alt); }
+
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-6);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+}
+
+.section-title {
+  font-size: clamp(var(--fs-xl), 4vw, var(--fs-2xl));
+}
+
+.section-sub {
+  color: var(--color-ink-soft);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-md);
+}
+
+/* ── BUTTONS ───────────────────────────────────────────────── */
+/* Accent (amber) is reserved strictly for Buy / Cart / WhatsApp actions per brand rule */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  transition: transform var(--duration-fast) var(--ease),
+              box-shadow var(--duration-fast) var(--ease),
+              background var(--duration-fast) var(--ease),
+              border-color var(--duration-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* Accent button — Buy/Cart/WhatsApp only, per design rule */
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+.btn--accent:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-border);
+}
+.btn--ghost:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-bg-alt);
+}
+
+.btn--sm { padding: 0.55rem 1.2rem; font-size: var(--fs-xs); }
+.btn--lg { padding: 1.1rem 2.25rem; font-size: var(--fs-md); }
+.btn--block { width: 100%; }
+
+/* ── BADGES / TAGS ─────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.02em;
+}
+.badge--accent { background: #fdf0e2; color: var(--color-accent-dark); }
+.badge--success { background: #e7f0e3; color: var(--color-primary); }
+.badge--muted { background: var(--color-bg-alt); color: var(--color-ink-soft); }
+
+/* ── CARDS ─────────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease), box-shadow var(--duration-base) var(--ease);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── FORM ELEMENTS ─────────────────────────────────────────── */
+.field {
+  width: 100%;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-sm);
+  background: var(--color-white);
+  color: var(--color-ink);
+  transition: border-color var(--duration-fast) var(--ease);
+}
+.field:focus {
+  border-color: var(--color-secondary);
+  outline: none;
+}
+.field::placeholder { color: #a8a48f; }
+
+label.field-label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+}
+
+/* ── TOAST (shared across pages) ──────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: var(--sp-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  z-index: var(--z-toast);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--duration-base) var(--ease);
+  box-shadow: var(--shadow-lg);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error { background: var(--color-danger); }
+
+/* ── SCROLLBAR (subtle, brand-tinted) ─────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-secondary-light); border-radius: var(--radius-pill); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-secondary); }
+
+/* ── RESPONSIVE TYPE BASELINE ──────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --sp-8: 4rem;
+    --sp-9: 5rem;
+  }
+  .container { padding-inline: var(--sp-3); }
+}
